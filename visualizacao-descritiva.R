@@ -42,7 +42,7 @@ ggplot(data=data, aes(data$Peso))+
   labs(x='Peso', y='Frequência')+
   ggsave("plot_Peso.png", path = "data/tables/", width = 6, height = 4, units = "in")
 
-# Procedimento
+# Numero de Procedimentos
 ggplot(data=data, aes(data$numero_procedimentos))+
   geom_histogram( fill = "#5c4963")+
   scale_x_continuous(breaks = pretty(data$numero_procedimentos, n = 20)) +
@@ -91,11 +91,12 @@ ggsave("plot_CID.png", path = "data/tables", width = 4, height = 6, units = "in"
 
 proc = read.csv("data/tables/PROCEDIMENTO_TABLE.csv")
 proc = proc[proc$porcent >= 2,]
+proc$PROCEDIMENTO = factor(proc$PROCEDIMENTO, levels = proc$PROCEDIMENTO[order(proc$porcent)])
 
 ggplot(data=proc, aes(x=proc$PROCEDIMENTO, y=proc$porcent))+
   geom_bar(stat="identity", fill='#5c4963')+
   geom_text(aes(label = as.character(round(porcent, 2))), hjust = -0.1,size = 3.5)+
-  scale_y_continuous(limits = c(0, 10))+
+  scale_y_continuous(limits = c(0, 15))+
   labs(x = "", y = paste("%"), title = "" )+
   coord_flip()+
   tema_massa()

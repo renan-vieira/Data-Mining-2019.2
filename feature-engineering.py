@@ -11,8 +11,8 @@ import pandas as pd
 from analise_exploratoria import contaePorcent
 
 # importar dados
-arq = pd.ExcelFile('data/raw_data.xlsx')
-paciente = arq.parse(0) # [**** IMPORTAR PACIENTE FILTRADO POR RENAN ****]
+arq = pd.ExcelFile('data/filtered_data.xlsx')
+paciente = arq.parse(0)
 internacao = arq.parse(1)
 amb = arq.parse(2)
 
